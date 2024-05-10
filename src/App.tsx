@@ -1,24 +1,62 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import { useForm } from 'react-hook-form';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import MyDocument from './components/MyDocument';
+
+interface IMyForm {
+  name: string;
+  picture: FileList;
+}
 
 function App() {
+  const [task, setTask] = useState<IMyForm>();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IMyForm>({
+    mode: 'onBlur',
+  });
+
+  const saveElement = (data: IMyForm) => {
+    setTask(data);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <form onSubmit={handleSubmit(saveElement)}>
+        <input
+          {...register('name', {
+            required: 'Поле обязательно для заполнения',
+            minLength: {
+              value: 5,
+              message: 'Нужно больше символов',
+            },
+          })}
+        />
+        <input
+          type="file"
+          accept="image/*"
+          {...register('picture', {
+            required: 'Required',
+          })}
+        />
+
+        <div>{errors.name?.message}</div>
+        <button type="submit">Сохранить</button>
+      </form>
+
+      {!!task?.name && (
+        <PDFDownloadLink
+          document={<MyDocument name={task.name} picture={task.picture[0]} />}
+          fileName="file.pdf"
         >
-          Learn React
-        </a>
-      </header>
+          {({ blob, url, loading, error }) =>
+            loading ? 'Загрузка...' : 'Скачать'
+          }
+        </PDFDownloadLink>
+      )}
     </div>
   );
 }
