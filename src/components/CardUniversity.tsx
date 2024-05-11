@@ -1,5 +1,6 @@
-import { FC } from 'react';
-import styled from 'styled-components';
+import React from "react";
+import { FC } from "react";
+import styled from "styled-components";
 
 const CardStyled = styled.div`
   height: 85px;

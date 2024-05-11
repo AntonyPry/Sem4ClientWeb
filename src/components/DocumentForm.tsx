@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { PDFDownloadLink } from '@react-pdf/renderer';
-import MyDocument from './MyDocument';
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import MyDocument from "./MyDocument";
+import React from "react";
 
 interface IMyForm {
   name: string;
@@ -16,7 +17,7 @@ function DocumentForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<IMyForm>({
-    mode: 'onBlur',
+    mode: "onBlur",
   });
 
   const saveElement = (data: IMyForm) => {
@@ -26,19 +27,19 @@ function DocumentForm() {
     <div className="App">
       <form onSubmit={handleSubmit(saveElement)}>
         <input
-          {...register('name', {
-            required: 'Поле обязательно для заполнения',
+          {...register("name", {
+            required: "Поле обязательно для заполнения",
             minLength: {
               value: 5,
-              message: 'Нужно больше символов',
+              message: "Нужно больше символов",
             },
           })}
         />
         <input
           type="file"
           accept="image/*"
-          {...register('picture', {
-            required: 'Required',
+          {...register("picture", {
+            required: "Required",
           })}
         />
 
@@ -47,13 +48,8 @@ function DocumentForm() {
       </form>
 
       {!!task?.name && (
-        <PDFDownloadLink
-          document={<MyDocument name={task.name} picture={task.picture[0]} />}
-          fileName="file.pdf"
-        >
-          {({ blob, url, loading, error }) =>
-            loading ? 'Загрузка...' : 'Скачать'
-          }
+        <PDFDownloadLink document={<MyDocument name={task.name} picture={task.picture[0]} />} fileName="file.pdf">
+          {({ blob, url, loading, error }) => (loading ? "Загрузка..." : "Скачать")}
         </PDFDownloadLink>
       )}
     </div>
