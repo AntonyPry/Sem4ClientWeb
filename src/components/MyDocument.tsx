@@ -1,17 +1,10 @@
-import {
-  Document,
-  Page,
-  View,
-  Text,
-  StyleSheet,
-  Image,
-} from '@react-pdf/renderer';
-import { FC } from 'react';
+import { Document, Page, View, Text, StyleSheet, Image } from "@react-pdf/renderer";
+import React, { FC } from "react";
 
 const styles = StyleSheet.create({
   page: {
-    flexDirection: 'row',
-    backgroundColor: '#E4E4E4',
+    flexDirection: "row",
+    backgroundColor: "#E4E4E4",
   },
   section: {
     margin: 10,
@@ -36,9 +29,7 @@ const MyDocument: FC<IDocument> = ({ name, picture }) => {
           <Text>{name}</Text>
         </View>
 
-        <View style={styles.section}>
-          {picture && <Image source={picture} />}
-        </View>
+        <View style={styles.section}>{picture && <Image source={picture} />}</View>
       </Page>
     </Document>
   );

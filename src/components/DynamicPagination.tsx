@@ -1,8 +1,9 @@
-import { FC, useEffect, useState } from 'react';
-import CardUniversity, { IUniversity } from '../components/CardUniversity';
-import { useInView } from 'react-intersection-observer';
-import axios from 'axios';
-import styled from 'styled-components';
+import { FC, useEffect, useState } from "react";
+import CardUniversity, { IUniversity } from "../components/CardUniversity";
+import { useInView } from "react-intersection-observer";
+import axios from "axios";
+import styled from "styled-components";
+import React from "react";
 
 const LIMIT_UNIVERSITIES = 15;
 
@@ -40,11 +41,11 @@ const DynamicPagination: FC = () => {
     try {
       const offset = (currentPage - 1) * LIMIT_UNIVERSITIES;
       const response = await axios.get(
-        `http://universities.hipolabs.com/search?offset=${offset}&limit=${LIMIT_UNIVERSITIES}`
+        `http://universities.hipolabs.com/search?offset=${offset}&limit=${LIMIT_UNIVERSITIES}`,
       );
       setUniversities((prev) => [...prev, ...response.data]);
     } catch (error) {
-      console.log('Error fetching univer...', error);
+      console.log("Error fetching univer...", error);
     } finally {
       setLoading(false);
     }
@@ -53,10 +54,7 @@ const DynamicPagination: FC = () => {
     <ListStyled>
       <h1>List Universities</h1>
       {universities.map((university) => (
-        <CardUniversity
-          data={university}
-          key={university.name}
-        ></CardUniversity>
+        <CardUniversity data={university} key={university.name}></CardUniversity>
       ))}
       {loading && <div>Loading...</div>}
       {!loading && <BlockObserver ref={ref}></BlockObserver>}
