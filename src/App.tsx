@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.css";
 import DocumentForm from "./components/DocumentForm";
 import DynamicPagination from "./components/DynamicPagination";
