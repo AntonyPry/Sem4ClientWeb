@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
+    "preview": "vite preview --host",
     "prettify": "prettier --write './src/**/*.{js,json,jsx,ts,tsx,css}'",
     "test": "vitest",
     "test-coverage": "vitest --coverage",
@@ -21,7 +21,8 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.4",
     "react-intersection-observer": "^9.10.2",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "vite-plugin-pwa": "^0.19.8"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.17.0",
