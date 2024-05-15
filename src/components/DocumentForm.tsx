@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import MyDocument from "./MyDocument";
-import React from "react";
 
 interface IMyForm {
   name: string;

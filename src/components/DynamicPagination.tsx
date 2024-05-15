@@ -3,7 +3,6 @@ import CardUniversity, { IUniversity } from "../components/CardUniversity";
 import { useInView } from "react-intersection-observer";
 import axios from "axios";
 import styled from "styled-components";
-import React from "react";
 
 const LIMIT_UNIVERSITIES = 15;
 
