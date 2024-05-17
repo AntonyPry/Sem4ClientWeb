@@ -48,7 +48,7 @@ function DocumentForm() {
 
       {!!task?.name && (
         <PDFDownloadLink document={<MyDocument name={task.name} picture={task.picture[0]} />} fileName="file.pdf">
-          {({ blob, url, loading, error }) => (loading ? "Загрузка..." : "Скачать")}
+          {({ loading }) => (loading ? "Загрузка..." : "Скачать")}
         </PDFDownloadLink>
       )}
     </div>
